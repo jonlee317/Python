@@ -1,0 +1,43 @@
+
+* project model_cc18
+* mentor graphics wirelist created with version 6.3.17
+* inifile   : 
+* options   : -h -q -n -m -i -z -c24 -oflat_order -kv:\projects\common\common.cfg 
+*
+* config file: v:\projects\common\common.cfg
+*
+* -gfiles\header_model_cc18.txt 
+* levels    : 
+* 
+*------------------------corner-----------------------------------------------
+.lib /mnt/y/projects/x146/models/corner.lib $pvt
+*--------------------- option setting ----------------------------------------
+.options abstol=1e-13 reltol=1e-5 chgtol=1e-18
+.options method=bdf maxord=3 dcdamp=2 itl4=6 vntol=1e-6 vconverge
+*--------------------- parameters --------------------------------------------
+.par nlv=0.4 plv=0.4 pwv=0.5 nwv=0.5 vdd=1.8 width=1.5 length=0.35
+*--------------------- probe node --------------------------------------------
+*.probe dc v(out) v(in)
+*--------------------- analysis -----------------------------------------------
+.dc length poi 6 0.18 0.26 0.35 0.5 0.7 1.0
+.op
+*--------------------- measurement -------------------------------------------
+mnl vlh vdd vll vss n w=nwv l=nlv m=1
+mpl vll vss vlh vdd p w=pwv l=plv m=1
+vddby2 vll vss dc vdd/2
+vdsl vlh vll dc 0.1
+vdsp vdda np dc 0.7
+vdsn nn vssa dc 0.7
+mn1 nn nn vssa vssa n w=width l=length m=1
+mp1 np np vdda vdda p w=width l=length m=1
+vdda vdda 0 dc vdd
+vdd vdd 0 dc vdd
+mc vdda vc vdda vdda p w=10 l=10 m=10
+vc vc vssa dc 0.5*vdd
+.global vdd
+.global vdda
+.global vss
+.global vssa
+.ground vss vssa 0
+.end
+
