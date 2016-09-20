@@ -18,9 +18,7 @@ netlist = file_in.read()
 file_in.close()
 
 #converting the netlist to line by line format
-#print (netlist)
 netlist = netlist.split("\n")
-#print (netlist)
 
 #iteration for line by line
 for line in netlist:
@@ -32,12 +30,6 @@ for line in netlist:
     	if new_line3[0][0] == "m" or new_line3[0][0] == "q":
     		new_line3[0]="x"+new_line3[0]
     new_line4 = " ".join(new_line3)
-
-    #new_line5 = new_line4.split(" ")
-    #if new_line5[0]!= "":    #prevents script from crashing
-    	#if new_line5[0][0] == "q":
-    		#new_line5[0]="x"+new_line5[0]
-    #new_line6 = " ".join(new_line5)
 
     file_out.write(new_line4+"\n")
 
