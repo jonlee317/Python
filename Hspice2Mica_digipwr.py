@@ -1,8 +1,10 @@
 #############################################################
-# In this conversion file we lower case all the characters  #
-#            and                                            #
-# we also add x in front of the M of all transistors        #
-#                                                           #
+#
+# In this conversion file
+# 1)  lower case all the characters 
+# 2)  add x in front of the m of all transistors
+# 3)  Add vdd and vss to end of lines where ".subckt" exists
+#                                
 #############################################################
 
 #Define the input file here
@@ -16,9 +18,7 @@ netlist = file_in.read()
 file_in.close()
 
 #converting the netlist to line by line format
-#print (netlist)
 netlist = netlist.split("\n")
-#print (netlist)
 
 #iteration for line by line
 for line in netlist:
